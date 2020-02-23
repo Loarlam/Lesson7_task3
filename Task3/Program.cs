@@ -8,11 +8,42 @@ using System;
 
 namespace Task3
 {
+    struct MyStruct
+    {
+        public string change;
+    }
+
     class Program
     {
+        static void StruktTaker(ref MyStruct myStruct)
+        {
+            myStruct.change = "изменено";
+        }
+
+        static void ClassTaker(MyClass myClass)
+        {
+            myClass.change = "изменено";
+        }
+
         static void Main(string[] args)
         {
-            
+            MyStruct myStruct = new MyStruct();
+            MyClass myClass = new MyClass();
+
+            myStruct.change = "не изменено";
+            myClass.change = "не изменено";
+
+            Console.WriteLine($"Значение поля change структуры MyStruct {myStruct.change}");
+            Console.WriteLine($"Значение поля change класса MyClass {myClass.change}");
+            Console.WriteLine(new string('-', 30));
+
+            StruktTaker(ref myStruct);
+            ClassTaker(myClass);
+
+            Console.WriteLine($"Значение поля change структуры MyStruct после метода StruktTaker {myStruct.change}");
+            Console.WriteLine($"Значение поля change класса MyClass после метода ClawssTaker {myClass.change}");
+
+            Console.ReadKey();
         }
     }
 }
